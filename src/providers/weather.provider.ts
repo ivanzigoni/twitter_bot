@@ -1,11 +1,12 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
+import { Weather } from 'src/interfaces/weather.interface';
 
 export const WEATHER_TOKEN = 'WEATHER';
 
 @Injectable()
-export class Weather {
+export class WeatherService {
   constructor(private readonly httpService: HttpService) {}
 
   async getForecast(woeid = '455821'): Promise<AxiosResponse<Weather>> {

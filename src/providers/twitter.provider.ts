@@ -6,7 +6,7 @@ import { TwitterApi, TwitterApiReadWrite } from 'twitter-api-v2';
 export const TWITTER_TOKEN = 'TWITTER';
 
 @Injectable()
-export class Twitter {
+export class TwitterService {
   private readonly ttApi: TwitterApiReadWrite;
   constructor() {
     const twitterApi = new TwitterApi({

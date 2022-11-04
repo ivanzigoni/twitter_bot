@@ -1,24 +1,24 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { Twitter, TWITTER_TOKEN } from 'src/providers/twitter.provider';
-import { Weather, WEATHER_TOKEN } from 'src/providers/weather.provider';
+import { serializeWeather } from 'src/helpers/tweet.formating';
+import { TwitterService, TWITTER_TOKEN } from 'src/providers/twitter.provider';
+import { WeatherService, WEATHER_TOKEN } from 'src/providers/weather.provider';
 
 @Injectable()
 export class TaskService {
   constructor(
     @Inject(WEATHER_TOKEN)
-    private weatherService: Weather,
+    private weatherService: WeatherService,
     @Inject(TWITTER_TOKEN)
-    private twitterService: Twitter,
+    private twitterService: TwitterService,
   ) {}
 
   @Cron(CronExpression.EVERY_10_SECONDS)
   // @Cron(CronExpression.EVERY_DAY_AT_8AM)
   async handleTask() {
     try {
-      // this.twitterService.tweet('testando service do bot lol');
-      // const weather = await this.weatherService.getForecast();
-      // console.log(weather);
+      const tweetFromWeather = await this.fetchWeather();
+      this.twitterService.tweet(tweetFromWeather);
     } catch (e) {
       console.log(e);
     } finally {
@@ -27,6 +27,7 @@ export class TaskService {
   }
 
   async fetchWeather() {
-    const weather = await this.weatherService.getForecast();
+    const { data } = await this.weatherService.getForecast();
+    return serializeWeather(data);
   }
 }

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TaskService } from './task.service';
-import { Twitter, TWITTER_TOKEN } from '../providers/twitter.provider';
-import { Weather, WEATHER_TOKEN } from '../providers/weather.provider';
+import { TwitterService, TWITTER_TOKEN } from '../providers/twitter.provider';
+import { WeatherService, WEATHER_TOKEN } from '../providers/weather.provider';
 import { HttpModule } from '@nestjs/axios';
 
 @Module({
@@ -9,11 +9,11 @@ import { HttpModule } from '@nestjs/axios';
     TaskService,
     {
       provide: WEATHER_TOKEN,
-      useClass: Weather,
+      useClass: WeatherService,
     },
     {
       provide: TWITTER_TOKEN,
-      useClass: Twitter,
+      useClass: TwitterService,
     },
   ],
   imports: [HttpModule],
