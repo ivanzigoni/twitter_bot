@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
-import { Twitter } from './providers/twitter.provider';
+import { TaskModule } from './task/task.module';
 
 @Module({
-  imports: [ScheduleModule.forRoot()],
+  imports: [ScheduleModule.forRoot(), TaskModule],
   controllers: [],
-  providers: [Twitter],
+  providers: [],
 })
 export class AppModule {}

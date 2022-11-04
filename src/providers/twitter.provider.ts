@@ -3,6 +3,8 @@ dotenv.config();
 import { Injectable } from '@nestjs/common';
 import { TwitterApi, TwitterApiReadWrite } from 'twitter-api-v2';
 
+export const TWITTER_TOKEN = 'TWITTER';
+
 @Injectable()
 export class Twitter {
   private readonly ttApi: TwitterApiReadWrite;
