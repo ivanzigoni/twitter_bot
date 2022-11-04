@@ -13,8 +13,7 @@ export class TaskService {
     private twitterService: TwitterService,
   ) {}
 
-  @Cron(CronExpression.EVERY_10_SECONDS)
-  // @Cron(CronExpression.EVERY_DAY_AT_8AM)
+  @Cron(CronExpression.EVERY_DAY_AT_8AM)
   async handleMorningTask() {
     try {
       const tweetFromWeather = await this.fetchWeather();
@@ -26,17 +25,17 @@ export class TaskService {
     }
   }
 
-  // @Cron(CronExpression.EVERY_DAY_AT_6PM)
-  // async handleAfternoonTask() {
-  //   try {
-  //     const tweetFromWeather = await this.fetchWeather();
-  //     this.twitterService.tweet(tweetFromWeather);
-  //   } catch (e) {
-  //     console.log(e);
-  //   } finally {
-  //     console.log('finally');
-  //   }
-  // }
+  @Cron(CronExpression.EVERY_DAY_AT_6PM)
+  async handleAfternoonTask() {
+    try {
+      const tweetFromWeather = await this.fetchWeather();
+      this.twitterService.tweet(tweetFromWeather);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      console.log('finally');
+    }
+  }
 
   async fetchWeather() {
     const { data } = await this.weatherService.getForecast();
