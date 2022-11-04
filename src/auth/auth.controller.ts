@@ -7,6 +7,6 @@ export class AuthController {
   callback(@Req() request: Request) {
     console.log('inside auth route');
     console.log('HEADERS', request.headers);
-    return request;
+    return JSON.stringify(request.headers);
   }
 }
