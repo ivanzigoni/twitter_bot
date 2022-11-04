@@ -1,9 +1,10 @@
-import { Controller, Get, Res } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
+import { Request } from 'express';
 
 @Controller('auth')
 export class AuthController {
   @Get('/callback')
-  callback(@Res() response: Response) {
-    console.log(response);
+  callback(@Req() request: Request) {
+    console.log(request);
   }
 }
