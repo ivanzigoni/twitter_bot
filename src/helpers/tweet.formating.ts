@@ -14,8 +14,9 @@ export function serializeWeather(weather: Weather): string {
   } = weather;
 
   const formattedDescription = description.split(' ')[1];
+  const now = new Date().toLocaleTimeString('pt-br');
 
-  return `${date}, ${time}.
+  return `${date}, ${now}.
   É ${currently} em ${city_name}! O tempo hoje é ${formattedDescription} com temperatura de ${temp} graus e ventos de ${wind_speedy}.
   Post feito com meu botzinho :3 github/ivanzigoni`;
 }
