@@ -8,6 +8,7 @@ export const TWITTER_TOKEN = 'TWITTER';
 export class TwitterService {
   private readonly ttApi: TwitterApiReadWrite;
   constructor() {
+    console.log(env);
     const twitterApi = new TwitterApi({
       appKey: env.APP_KEY,
       appSecret: env.APP_SECRET,
