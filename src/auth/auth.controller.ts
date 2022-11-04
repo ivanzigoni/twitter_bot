@@ -6,5 +6,6 @@ export class AuthController {
   @Get('/callback')
   callback(@Req() request: Request) {
     console.log(request);
+    return request;
   }
 }
