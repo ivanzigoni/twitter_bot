@@ -6,6 +6,8 @@ import { env } from './config/env';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(env.PORT);
+  await app
+    .listen(env.PORT)
+    .then(() => console.log(`listening on port ${env.PORT}`));
 }
 bootstrap();

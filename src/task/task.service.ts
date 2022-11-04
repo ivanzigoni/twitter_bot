@@ -18,7 +18,8 @@ export class TaskService {
   async handleMorningTask() {
     try {
       const tweetFromWeather = await this.fetchWeather();
-      this.twitterService.tweet(tweetFromWeather);
+      console.log(tweetFromWeather);
+      // this.twitterService.tweet(tweetFromWeather);
     } catch (e) {
       console.log(e);
     } finally {
